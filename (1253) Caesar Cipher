@@ -1,0 +1,19 @@
+<?php
+
+$testes = intval(trim(fgets(STDIN)));
+
+for ($i = 0; $i < $testes; $i++) {
+    fscanf(STDIN, "%s", $palavra);
+    fscanf(STDIN, "%hd", $deslocamento);
+
+    for ($j = 0; $j < strlen($palavra); $j++) {
+        if (ord($palavra[$j]) - $deslocamento < ord('A')) {
+            $letra = chr(ord('[') - ($deslocamento - (ord($palavra[$j]) - ord('A'))));
+            echo $letra;
+        } else {
+            $letra = chr(ord($palavra[$j]) - $deslocamento);
+            echo $letra;
+        }
+    }
+    echo "\n";
+}
