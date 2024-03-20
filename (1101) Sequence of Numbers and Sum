@@ -1,0 +1,28 @@
+<?php
+
+while(true) {
+    $exploded = explode(' ', trim(fgets(STDIN)));
+    $x = min($exploded);
+    $y = max($exploded);
+
+    if($x <= 0 || $y <= 0) {
+        break;
+    }
+
+    $numbers[] = [
+      'x' => $x,
+      'y' => $y,
+    ];
+}
+
+foreach($numbers as $xy) {
+    $result = [];
+    $message = '';
+    for ($i = $xy['x']; $i <= $xy['y']; $i++) {
+        $result[] = $i;
+        $message .= "$i ";
+    }
+
+    $message .= "Sum=".array_sum($result);
+    echo "$message\n";
+}
