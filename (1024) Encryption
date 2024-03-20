@@ -1,0 +1,33 @@
+<?php
+
+$casos = intval(trim(fgets(STDIN)));
+
+while ($casos > 0) {
+    $palavra = trim(fgets(STDIN));
+    $tam = strlen($palavra);
+    $tamMetade = intval($tam / 2);
+
+    
+    for ($i = 0; $i < $tam; $i++) {
+        if ((ord($palavra[$i]) >= 65 && ord($palavra[$i]) <= 90) || (ord($palavra[$i]) >= 97 && ord($palavra[$i]) <= 122)) {
+            $palavra[$i] = chr(ord($palavra[$i]) + 3);
+        }
+    }
+
+    
+    for ($i = 0, $j = $tam - 1; $i < $tamMetade; $i++, $j--) {
+        $aux = $palavra[$j];
+        $palavra[$j] = $palavra[$i];
+        $palavra[$i] = $aux;
+    }
+
+    
+    for ($i = $tamMetade; $i < $tam; $i++) {
+        if (ord($palavra[$i]) >= 32 && ord($palavra[$i]) <= 176) {
+            $palavra[$i] = chr(ord($palavra[$i]) - 1);
+        }
+    }
+
+    echo $palavra . "\n";
+    $casos--;
+}
