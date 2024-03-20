@@ -1,0 +1,36 @@
+<?php
+
+function verificaBalancoParenteses($str) {
+    $qtsP = 0;
+
+
+    if ($str[0] == ')')
+        return false;
+
+    
+    for ($i = 0; isset($str[$i]) && $qtsP >= 0; $i++) {
+        
+        if ($str[$i] == '(')
+            $qtsP++;
+
+        
+        if ($str[$i] == ')')
+            $qtsP--;
+
+
+    }
+
+    if ($qtsP == 0)
+        return true;
+    else
+        return false;
+}
+
+while (($expressao = fgets(STDIN)) !== false) {
+    $expressao = rtrim($expressao, "\n");
+
+    if (verificaBalancoParenteses($expressao))
+        echo "correct\n";
+    else
+        echo "incorrect\n";
+}
