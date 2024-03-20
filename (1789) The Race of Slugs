@@ -1,0 +1,16 @@
+<?php
+
+while (($n = fgets(STDIN)) !== false) {
+    $n = intval(trim($n));
+    $velocities = explode(" ", fgets(STDIN));
+    
+    $max_velocity = max($velocities);
+    
+    if ($max_velocity < 10) {
+        echo "1\n";
+    } elseif ($max_velocity >= 10 && $max_velocity < 20) {
+        echo "2\n";
+    } else {
+        echo "3\n";
+    }
+}
