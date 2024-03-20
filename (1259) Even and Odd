@@ -1,0 +1,57 @@
+<?php
+
+function merge(&$vet, $inicio, $meio, $fim) {
+    $p1 = $inicio;
+    $p2 = $meio + 1;
+    $vetAux = [];
+
+    while ($p1 <= $meio || $p2 <= $fim) {
+        if ($p1 <= $meio && ($p2 > $fim || $vet[$p1] <= $vet[$p2])) {
+            $vetAux[] = $vet[$p1];
+            $p1++;
+        } else {
+            $vetAux[] = $vet[$p2];
+            $p2++;
+        }
+    }
+
+    for ($i = $inicio, $j = 0; $i <= $fim; $i++, $j++) {
+        $vet[$i] = $vetAux[$j];
+    }
+}
+
+function mergeSort(&$vet, $inicio, $fim) {
+    if ($inicio < $fim) {
+        $meio = ($inicio + $fim) / 2;
+        mergeSort($vet, $inicio, $meio);
+        mergeSort($vet, $meio + 1, $fim);
+        merge($vet, $inicio, $meio, $fim);
+    }
+}
+
+$casos = intval(trim(fgets(STDIN)));
+$pares = [];
+$impares = [];
+
+while ($casos--) {
+    $numero = intval(trim(fgets(STDIN)));
+
+    if ($numero % 2 == 0) {
+        $pares[] = $numero;
+    } else {
+        $impares[] = $numero;
+    }
+}
+
+$sizePares = count($pares);
+$sizeImpares = count($impares);
+
+mergeSort($pares, 0, $sizePares - 1);
+mergeSort($impares, 0, $sizeImpares - 1);
+
+foreach ($pares as $par) {
+    echo $par . "\n";
+}
+for ($i = $sizeImpares - 1; $i >= 0; $i--) {
+    echo $impares[$i] . "\n";
+}
