@@ -1,0 +1,26 @@
+<?php
+
+while (true) {
+    
+    fscanf(STDIN, "%d %d %d %d", $h1, $m1, $h2, $m2);
+
+    
+    if ($h1 == 0 && $m1 == 0 && $h2 == 0 && $m2 == 0) {
+        break;
+    }
+
+    
+    $total_minutes_start = $h1 * 60 + $m1;
+    $total_minutes_end = $h2 * 60 + $m2;
+
+    
+    $difference_minutes = $total_minutes_end - $total_minutes_start;
+
+    
+    if ($difference_minutes < 0) {
+        $difference_minutes += 24 * 60; // Adicionando um dia em minutos
+    }
+
+    
+    echo $difference_minutes . "\n";
+}
